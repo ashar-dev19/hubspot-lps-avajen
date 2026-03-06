@@ -1,0 +1,23 @@
+{
+  "label": "AVAJEN Theme",
+  "author": {
+    "name": "HubSpot",
+    "email": "hs-content-assets@hubspot.com",
+    "url": "https://www.hubspot.com/"
+	},
+  "documentation_url": "https://developers.hubspot.com/docs/cms/building-blocks/themes",
+  "example_url": "",
+  "preview_path": "./templates/avajen-landing-a.html",
+  "screenshot_path": "./images/template-previews/landing-page.png",
+  "enable_domain_stylesheets": false,
+  "license": "./license.txt",
+  "responsive_breakpoints": [
+    {
+      "name": "mobile",
+      "mediaQuery": "@media (max-width: 767px)",
+      "previewWidth": {
+        "value": 477
+      }
+    }
+  ]
+}

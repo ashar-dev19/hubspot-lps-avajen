@@ -1,0 +1,219 @@
+Design doc: Convert avajen-landing-a.html to DnD sections
+
+Goal
+-----
+Make `avajen-landing-a.html` behave like the boilerplate `landing-page.html` by:
+- Using a single `{% dnd_area %}` inside the body block.
+- Splitting the current hard-coded sections into fixed `section` templates that use `dnd_section`, `dnd_column`, `dnd_row`, and DnD modules.
+- Allowing editors to edit only the existing content (texts, images, forms, CTAs), not add fully custom new sections.
+
+High-level structure
+--------------------
+Page template: `avajen-theme/templates/avajen-landing-a.html`
+
+Body will contain:
+
+{% block body %}
+{% dnd_area "main_section"
+  label="Main section",
+  class="body-container body-container--avajen-landing-a"
+%}
+
+  {% include_dnd_partial path="../sections/avajen-header-hero.html" %}
+  {% include_dnd_partial path="../sections/avajen-questions.html" %}
+  {% include_dnd_partial path="../sections/avajen-free-guide.html" %}
+  {% include_dnd_partial path="../sections/avajen-performance-it.html" %}
+  {% include_dnd_partial path="../sections/avajen-why-avajen.html" %}
+  {% include_dnd_partial path="../sections/avajen-final-cta.html" %}
+
+{% end_dnd_area %}
+{% endblock body %}
+
+Notes:
+- Each included file will be a `templateType: section` template.
+- Set `isAvailableForNewContent: false` in the section front matter so these sections are only used by this landing page.
+- Do not add any blank or generic DnD sections; this keeps the page limited to the sections you define.
+
+
+Section 1 – Header + Hero (with form)
+-------------------------------------
+Current content (in avajen-landing-a.html):
+- Custom `<header class="site-header">` with logo “AVAJEN” + a “Schedule a Review” CTA button.
+- Hero section with background image (`hero-bg.jpg`), “Performance-Driven IT” eyebrow, H1 headline, supporting paragraph, two CTA buttons, and a right-hand HubSpot form module (`{% module "hero_form" path="@hubspot/form" %}`).
+
+New section file:
+- Path: `avajen-theme/sections/avajen-header-hero.html`
+- Front matter:
+  - `templateType: section`
+  - `label: "AVAJEN header & hero"`
+  - `isAvailableForNewContent: false`
+
+DnD layout:
+- Wrap the entire hero area in a `dnd_section` with a background image.
+- Use two columns:
+  - Left column (width ~7–8):
+    - Row 1: `@hubspot/rich_text` module for eyebrow + H1 + hero subtitle.
+    - Row 2: `@hubspot/rich_text` module for the two CTA buttons (keeping existing classes).
+  - Right column (width ~4–5):
+    - Row 1: `@hubspot/form` module for the hero form.
+
+Editor capabilities:
+- Can edit headline, eyebrow, subtitle text.
+- Can edit CTA button text and URLs.
+- Can change which form is used in the hero.
+- Cannot add new columns or arbitrary extra modules beyond what’s defined.
+
+
+Section 2 – “The Questions Real Estate Firms Ask About IT”
+----------------------------------------------------------
+Current content:
+- `section.section-light` containing:
+  - Section header with eyebrow “IT Solutions” and H2 “The Questions Real Estate Firms Ask About IT”.
+  - A `grid-2` layout with four `.question-card` blocks, each card having:
+    - H3 question.
+    - Paragraph.
+    - Checklist `<ul class="check-list">` of bullet items.
+
+New section file:
+- Path: `avajen-theme/sections/avajen-questions.html`
+- Front matter:
+  - `templateType: section`
+  - `label: "AVAJEN questions grid"`
+  - `isAvailableForNewContent: false`
+
+DnD layout:
+- `dnd_section` with light background (matching `section-light` styling).
+- Top row:
+  - `@hubspot/rich_text` module for eyebrow + H2 (the section header).
+- Question cards:
+  - Option 1 (simpler): four separate `@hubspot/rich_text` modules, each containing the card’s H3 and checklist markup, arranged in a grid via CSS classes.
+  - Option 2 (more structured): 2 columns, each with 2 rows; each row has a `@hubspot/rich_text` module representing one card.
+
+Editor capabilities:
+- Can edit the eyebrow, H2, card headlines, and bullet copy.
+- Cannot add more than four cards unless you explicitly create extra rows/modules.
+
+
+Section 3 – “Free Guide” (two-column guide + form)
+--------------------------------------------------
+Current content:
+- `section.section-navy` with:
+  - Left: eyebrow “Free Download”, H2 “28 Questions to Ask Your IT Provider”, supporting paragraph, and a checklist of four bullets.
+  - Right: `.form-card` with H3 “Download the Guide” and a HubSpot form module (`guide_download_form`).
+
+New section file:
+- Path: `avajen-theme/sections/avajen-free-guide.html`
+- Front matter:
+  - `templateType: section`
+  - `label: "AVAJEN free guide"`
+  - `isAvailableForNewContent: false`
+
+DnD layout:
+- `dnd_section` with navy background color.
+- Left column:
+  - Row 1: `@hubspot/rich_text` with eyebrow + H2 + main paragraph.
+  - Row 2: `@hubspot/rich_text` with checklist markup.
+- Right column:
+  - Row 1: `@hubspot/rich_text` for “Download the Guide” heading.
+  - Row 2: `@hubspot/form` module for the guide download form.
+
+Editor capabilities:
+- Can edit all text (headings, paragraphs, bullets).
+- Can select/change the “Download the Guide” form.
+- Layout stays fixed to this two-column design.
+
+
+Section 4 – “What Performance-Driven IT Looks Like”
+---------------------------------------------------
+Current content:
+- `section.section-light` with:
+  - Section header (eyebrow “Our Approach”, H2 “What Performance-Driven IT Looks Like”).
+  - A `grid-4` with four `.feature-card`s:
+    - Each has an inline SVG icon, H3 title, and paragraph.
+
+New section file:
+- Path: `avajen-theme/sections/avajen-performance-it.html`
+- Front matter:
+  - `templateType: section`
+  - `label: "AVAJEN performance IT features"`
+  - `isAvailableForNewContent: false`
+
+DnD layout:
+- `dnd_section` with light background.
+- Header row:
+  - `@hubspot/rich_text` for eyebrow + H2.
+- Features:
+  - One row with four columns (or two rows with two columns each).
+  - Each column contains a `@hubspot/rich_text` module that includes the icon SVG markup plus H3 and paragraph.
+
+Editor capabilities:
+- Can edit feature titles and descriptions.
+- Icons can remain static (embedded in the HTML) or be editable text if desired.
+- Number of features is fixed at four unless more columns/modules are manually added in code.
+
+
+Section 5 – “Why Choose AVAJEN / Built for Firms Like Yours”
+------------------------------------------------------------
+Current content:
+- `section.section-navy` with a `grid-2`:
+  - Left:
+    - Eyebrow “Why AVAJEN”.
+    - H2 “Built for Firms Like Yours”.
+    - Supporting paragraph.
+    - Light checklist of bullets.
+  - Right:
+    - `.stagger-list` of `.stagger-item`s, each with icon SVG and label text (e.g., “Investor-sensitive environments”, “Financial system security”).
+
+New section file:
+- Path: `avajen-theme/sections/avajen-why-avajen.html`
+- Front matter:
+  - `templateType: section`
+  - `label: "AVAJEN why section"`
+  - `isAvailableForNewContent: false`
+
+DnD layout:
+- `dnd_section` with navy background.
+- Left column:
+  - Row 1: `@hubspot/rich_text` with eyebrow + H2 + paragraph.
+  - Row 2: `@hubspot/rich_text` for the bullet list.
+- Right column:
+  - One or more `@hubspot/rich_text` modules containing the stagger list markup (icons + labels).
+
+Editor capabilities:
+- Can edit all left-column text and bullet labels.
+- Can edit right-column labels (and possibly add/remove lines within the Rich Text), while the overall two-column structure stays fixed.
+
+
+Section 6 – Final CTA
+---------------------
+Current content:
+- `section.section-gradient` with:
+  - Centered H2 “Ready for IT That Moves as Fast as Your Deals?”.
+  - Supporting paragraph.
+  - One primary CTA button.
+
+New section file:
+- Path: `avajen-theme/sections/avajen-final-cta.html`
+- Front matter:
+  - `templateType: section`
+  - `label: "AVAJEN final CTA"`
+  - `isAvailableForNewContent: false`
+
+DnD layout:
+- `dnd_section` with gradient background.
+- Single full-width column:
+  - Row 1: `@hubspot/rich_text` with H2.
+  - Row 2: `@hubspot/rich_text` with paragraph.
+  - Row 3: `@hubspot/rich_text` or `@hubspot/button` module for the CTA button.
+
+Editor capabilities:
+- Can edit final CTA heading, body text, and button text/URL.
+- Cannot add extra unrelated blocks.
+
+
+Constraints and locking down flexibility
+----------------------------------------
+- No “custom empty section” is added to the DnD area, so editors can only work with the predefined sections listed above.
+- Each section is defined as a separate `section` template but marked `isAvailableForNewContent: false` to keep them out of the generic section picker.
+- If needed, individual `dnd_module`s (for example logo/header pieces) can be marked as locked so they can’t be moved or deleted, while their text remains editable through the module’s content.
+

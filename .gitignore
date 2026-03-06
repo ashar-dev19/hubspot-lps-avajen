@@ -24,3 +24,5 @@ dist-ssr
 *.sw?
 
 package-lock.json
+new-theme/*
+cms-elevate-theme-public/*

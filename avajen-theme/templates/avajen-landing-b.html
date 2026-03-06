@@ -1,0 +1,331 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: AVAJEN – IT Confidence Check
+  screenshotPath: ../images/template-previews/landing-page.png
+-->
+{% extends "./layouts/base.html" %}
+
+{# Use AVAJEN-specific CSS exported from the design #}
+{% set template_css = "../../css/landing-page-b.css" %}
+
+{# Disable the default boilerplate header/footer so we can use the AVAJEN header/footer markup #}
+{% block header %}{% endblock header %}
+{% block footer %}{% endblock footer %}
+
+{% block body %}
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="/" class="logo">AVAJEN</a>
+      <nav class="nav-desktop">
+        <a href="#" class="btn btn-hero btn-sm">Schedule a Review</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" style="background-image: url('{{ get_asset_url("../images/hero-bg-b.jpg") }}');">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <p class="eyebrow">Free IT Assessment</p>
+        <h1>Is Your IT Helping Your Business <span class="text-accent">Perform?</span></h1>
+        <p class="hero-subtitle">
+          Real estate firms rely on technology to manage investments, properties, financial systems, and investor communications.
+          But many leadership teams aren't fully confident their environment is secure, reliable, and scalable.
+        </p>
+        <p class="hero-subtitle-secondary">
+          Our Free IT Confidence Check helps you quickly determine whether your technology is supporting your business — or quietly creating risk.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-hero btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+              <rect width="6" height="4" x="9" y="3" rx="1" />
+              <path d="m9 14 2 2 4-4" />
+            </svg>
+            Take the Free IT Confidence Check
+          </a>
+          <a href="#" class="btn btn-hero-outline btn-lg">Schedule a Strategy Review</a>
+        </div>
+      </div>
+      <div class="banner-form">
+        {# HubSpot form module for IT Confidence Check hero #}
+        {% module "hero_form_it_confidence" path="@hubspot/form" %}
+      </div>
+    </div>
+  </section>
+
+  <!-- Hidden Issues -->
+  <section class="section section-light">
+    <div class="container">
+      <div class="grid-2 align-center">
+        <div>
+          <p class="eyebrow">Comprehensive IT Solutions</p>
+          <h2>Built for Confident <span class="text-accent">Business Decisions</span></h2>
+          <p class="text-muted">
+            Most companies only evaluate their IT after something breaks. But hidden issues often exist long before that.
+          </p>
+        </div>
+        <div class="issue-list">
+          <div class="issue-item">
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <span>Security gaps in financial systems</span>
+          </div>
+          <div class="issue-item">
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <span>Inconsistent controls across properties</span>
+          </div>
+          <div class="issue-item">
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <span>Limited visibility into devices and access</span>
+          </div>
+          <div class="issue-item">
+            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <path d="m9 11 3 3L22 4" />
+            </svg>
+            <span>Reactive support instead of proactive oversight</span>
+          </div>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top: 48px;">
+        <p class="text-muted" style="margin-bottom: 24px;">
+          The IT Confidence Check helps identify whether your environment is operating the way it should.
+        </p>
+        <a href="#" class="btn btn-hero btn-lg">
+          Start the IT Confidence Check
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Assessment Areas -->
+  <section class="section section-navy">
+    <div class="container">
+      <div class="section-header">
+        <p class="eyebrow">Assessment Areas</p>
+        <h2>What the IT Confidence Check <span class="text-accent">Evaluates</span></h2>
+      </div>
+      <div class="grid-3">
+        <div class="assessment-card">
+          <div class="assessment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+            </svg>
+          </div>
+          <h3>Security of Financial &amp; Investor Systems</h3>
+          <p>Are the systems that handle capital, wires, and investor communications properly protected?</p>
+        </div>
+        <div class="assessment-card">
+          <div class="assessment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+              <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" />
+              <circle cx="12" cy="12" r="10" />
+            </svg>
+          </div>
+          <h3>Identity &amp; Access Controls</h3>
+          <p>Who has access to what — and how is that access secured?</p>
+        </div>
+        <div class="assessment-card">
+          <div class="assessment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
+          <h3>Operational Stability</h3>
+          <p>Are systems monitored and maintained proactively to prevent disruption?</p>
+        </div>
+        <div class="assessment-card">
+          <div class="assessment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </div>
+          <h3>Portfolio-Wide Visibility</h3>
+          <p>Can your organization see devices, risks, and technology health across properties and offices?</p>
+        </div>
+        <div class="assessment-card">
+          <div class="assessment-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10" />
+              <circle cx="12" cy="12" r="6" />
+              <circle cx="12" cy="12" r="2" />
+            </svg>
+          </div>
+          <h3>Strategic IT Alignment</h3>
+          <p>Is your technology supporting business growth, acquisitions, and operational efficiency?</p>
+        </div>
+        <div class="assessment-card assessment-card-cta">
+          <p>Takes just a few minutes</p>
+          <a href="#" class="btn btn-hero">
+            Start Now
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Happens After -->
+  <section class="section section-light">
+    <div class="container text-center">
+      <div class="section-header">
+        <p class="eyebrow">Next Steps</p>
+        <h2>What Happens After the <span class="text-accent">Assessment?</span></h2>
+        <p class="text-muted" style="max-width: 640px; margin: 0 auto 48px;">
+          Once completed, you'll receive a confidence score indicating how your environment compares to modern IT best practices.
+        </p>
+      </div>
+      <div class="grid-3 steps-grid">
+        <div class="step-card">
+          <div class="step-number">01</div>
+          <h3>Review Internally</h3>
+          <p>Use the results to evaluate your current IT posture with your leadership team.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">02</div>
+          <h3>Discuss with Your Provider</h3>
+          <p>Share findings with your current IT provider and ask informed questions.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">03</div>
+          <h3>Talk to Our Team</h3>
+          <p>Schedule a brief strategy session to explore opportunities for improvement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is Performance-Driven IT -->
+  <section class="section section-navy">
+    <div class="container">
+      <div class="grid-2 align-center">
+        <div>
+          <p class="eyebrow">Our Philosophy</p>
+          <h2>What Is Performance-Driven <span class="text-accent">IT?</span></h2>
+          <p class="text-light-70">
+            Traditional IT focuses on fixing problems when they occur. Performance-Driven IT focuses on preventing problems while improving
+            operational efficiency.
+          </p>
+          <ul class="check-list check-list-light">
+            <li>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              Secure financial operations
+            </li>
+            <li>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              Reliable business systems
+            </li>
+            <li>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              Scalable infrastructure
+            </li>
+            <li>
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              Investor-grade operational controls
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="built-for-heading">Built for Real Estate Organizations</h3>
+          <div class="re-list">
+            <div class="re-item">
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              Real estate investments
+            </div>
+            <div class="re-item">
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              Development projects
+            </div>
+            <div class="re-item">
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              Asset management portfolios
+            </div>
+            <div class="re-item">
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              Investor reporting
+            </div>
+            <div class="re-item">
+              <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <path d="m9 11 3 3L22 4" />
+              </svg>
+              Multi-entity operations
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section section-gradient">
+    <div class="container text-center">
+      <h2>
+        Curious How Your IT Environment <span class="text-accent">Stacks Up?</span>
+      </h2>
+      <p class="text-light-70">
+        The IT Confidence Check takes just a few minutes and can reveal hidden risks or opportunities within your technology environment.
+      </p>
+      <div class="hero-actions" style="justify-content: center; margin-top: 24px;">
+        <a href="#" class="btn btn-hero btn-lg">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0 2-2h-2" />
+            <rect width="6" height="4" x="9" y="3" rx="1" />
+            <path d="m9 14 2 2 4-4" />
+          </svg>
+          Take the Free IT Confidence Check
+        </a>
+        <a href="#" class="btn btn-hero-outline btn-lg">
+          Schedule a 30-Minute IT Strategy Review
+        </a>
+      </div>
+    </div>
+  </section>
+
+{% endblock body %}
+
